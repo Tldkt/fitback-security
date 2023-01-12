@@ -23,7 +23,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Add permission
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
         shell: bash
         working-directory: ${{ env.working-directory }}
         
