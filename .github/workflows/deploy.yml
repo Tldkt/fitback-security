@@ -12,7 +12,7 @@ permissions:
 env:
   AWS_REGION: ap-northeast-2 ##region##
   S3BUCKET: fitback-s3 ##s3-bucket## 
-  
+  PROJECT_NAME: fitback-security
   
 jobs:
   build:
@@ -56,4 +56,4 @@ jobs:
           
       - name: Upload Artifact to s3
         working-directory: ${{ env.working-directory }}/target
-        run: aws s3 cp --region ap-northeast-2 *.jar s3://${{ env.S3BUCKET }}/
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ env.S3BUCKET }}/${{ env.PROJECT_NAME }}/$GITHUB_SHA.zip
