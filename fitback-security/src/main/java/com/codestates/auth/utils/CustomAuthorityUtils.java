@@ -35,7 +35,7 @@ public class CustomAuthorityUtils {
        return authorities;
     }
 
-    // DB 저장 용
+    // DB 저장용
     public List<String> createRoles(String email) {
         if (email.equals(adminMailAddress)) {
             return ADMIN_ROLES_STRING;
