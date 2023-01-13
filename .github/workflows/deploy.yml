@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./fitback-security
     
     steps:
       - uses: actions/checkout@v2
@@ -18,8 +20,6 @@ jobs:
         with:
           java-version: '11'
           
-      - name: Print working directory
-        run: pwd
         
       - name: Build with Gradle
         run: ./gradlew 
@@ -27,7 +27,7 @@ jobs:
         working-directory: ${{ env.working-directory }}
           
       - name: Make zip file
-        run: zip -r ./fitback.zip .
+        run: zip -r ./fitback.zip
         shell: bash
         
           
