@@ -6,9 +6,6 @@ on:
   push:
     branches: [ "master" ]
     
-permissions:
-  contents: read
-    
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,12 +17,6 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'temurin'
-
-      - name: Add permission
-        run: chmod +x gradlew
-        shell: bash
-        working-directory: ${{ env.working-directory }}
         
       - name: Build with Gradle
         run: ./gradlew 
@@ -33,17 +24,17 @@ jobs:
         working-directory: ${{ env.working-directory }}
           
       - name: Make zip file
-        run: zip -r ./$GITHUB_SHA.zip .
+        run: zip -r ./fitback.zip .
         shell: bash
-        working-directory: ${{ env.working-directory }}
+        
           
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ap-northeast-2
           
       - name: Upload Artifact to s3
-        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ env.S3BUCKET }}/${{ env.PROJECT_NAME }}/$GITHUB_SHA.zip
+        run: aws s3 cp --region ap-northeast-2 ./fitbackfitback.zip s3://${{ secrets.S3BUCKET }}/${{ secrets.PROJECT_NAME }}/$fitback.zip
         working-directory: ${{ env.working-directory }}
