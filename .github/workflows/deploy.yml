@@ -42,5 +42,9 @@ jobs:
           aws-region: ap-northeast-2
           
       - name: Upload Artifact to s3
-        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3BUCKET }}/${{ secrets.PROJECT_NAME }}/$GITHUB_SHA.zip
-        working-directory: ${{ env.working-directory }}
+        run: |
+          aws deploy push \
+          --application-name ${{ secrets.CODE_DEPLOY }} \
+          --ignore-hidden-files \
+          --s3-location s3://$S3_BUCKET/$GITHUB_SHA.zip \
+          --source .
