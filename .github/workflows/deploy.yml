@@ -30,7 +30,7 @@ jobs:
         working-directory: ${{ env.working-directory }}
           
       - name: Make zip file
-        run: zip -r ./fitback.zip
+        run: zip -r ./$GITHUB_SHA.zip .
         shell: bash
         
           
