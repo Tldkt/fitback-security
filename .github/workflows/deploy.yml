@@ -43,8 +43,8 @@ jobs:
           
       - name: Upload Artifact to s3
         run: |
-          aws deploy push \
-          --application-name ${{ secrets.CODE_DEPLOY }} \
-          --ignore-hidden-files \
-          --s3-location s3://${{ secrets.S3BUCKET }}/$GITHUB_SHA.zip \
+          aws deploy push
+          --application-name ${{ secrets.CODE_DEPLOY }}
+          --ignore-hidden-files
+          --s3-location s3://${{ secrets.S3BUCKET }}/$GITHUB_SHA.zip
           --source .
