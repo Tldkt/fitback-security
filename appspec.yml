@@ -6,13 +6,12 @@ files:
     overwrite: yes
 
 permissions:
-  - object: /
-    pattern: "**"
-    owner: ubuntu
-    group: ubuntu
+  - object: /home/ubuntu
+    owner: ec2-user
+
 
 hooks:
   ApplicationStart:
     - location: scripts/deploy.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user
