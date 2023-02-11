@@ -8,6 +8,7 @@ files:
 permissions:
   - object: /home/ec2-user/action
     owner: github-actions-iam-user
+    mode: chmod +x /home/ec2-user/action
 
 
 
